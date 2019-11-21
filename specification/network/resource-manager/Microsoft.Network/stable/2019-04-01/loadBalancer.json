@@ -1167,11 +1167,11 @@
           "description": "It represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4."
         },
         "subnet": {
-          "$ref": "./virtualNetwork.json#/definitions/Subnet",
+          "$ref": "./network.json#/definitions/SubResource",
           "description": "The reference of the subnet resource."
         },
         "publicIPAddress": {
-          "$ref": "./publicIpAddress.json#/definitions/PublicIPAddress",
+          "$ref": "./network.json#/definitions/SubResource",
           "description": "The reference of the Public IP resource."
         },
         "publicIPPrefix": {
@@ -1221,7 +1221,7 @@
           "readOnly": true,
           "type": "array",
           "items": {
-            "$ref": "./networkInterface.json#/definitions/NetworkInterfaceIPConfiguration"
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "Gets collection of references to IP addresses defined in network interfaces."
         },
@@ -1452,7 +1452,7 @@
         },
         "backendIPConfiguration": {
           "readOnly": true,
-          "$ref": "./networkInterface.json#/definitions/NetworkInterfaceIPConfiguration",
+          "$ref": "./network.json#/definitions/SubResource",
           "description": "A reference to a private IP address defined on a network interface of a VM. Traffic sent to the frontend port of each of the frontend IP configurations is forwarded to the backend IP."
         },
         "protocol": {

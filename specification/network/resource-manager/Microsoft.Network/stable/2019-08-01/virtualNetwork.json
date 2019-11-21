@@ -1283,11 +1283,11 @@
           "description": "List of address prefixes for the subnet."
         },
         "networkSecurityGroup": {
-          "$ref": "./networkSecurityGroup.json#/definitions/NetworkSecurityGroup",
+          "$ref": "./network.json#/definitions/SubResource",
           "description": "The reference of the NetworkSecurityGroup resource."
         },
         "routeTable": {
-          "$ref": "./routeTable.json#/definitions/RouteTable",
+          "$ref": "./network.json#/definitions/SubResource",
           "description": "The reference of the RouteTable resource."
         },
         "natGateway": {
@@ -1320,7 +1320,7 @@
           "readOnly": true,
           "type": "array",
           "items": {
-            "$ref": "./networkInterface.json#/definitions/IPConfiguration"
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "An array of references to the network interface IP configurations using subnet."
         },
@@ -1564,7 +1564,7 @@
         "subnets": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Subnet"
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "A list of subnets in a Virtual Network."
         },
