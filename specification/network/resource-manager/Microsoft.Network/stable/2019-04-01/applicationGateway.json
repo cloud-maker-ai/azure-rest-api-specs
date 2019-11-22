@@ -1272,7 +1272,7 @@
         "backendIPConfigurations": {
           "type": "array",
           "items": {
-            "$ref": "./networkInterface.json#/definitions/NetworkInterfaceIPConfiguration"
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "Collection of references to IPs defined in network interfaces."
         },

@@ -760,7 +760,7 @@
         "sourceApplicationSecurityGroups": {
           "type": "array",
           "items": {
-            "$ref": "./applicationSecurityGroup.json#/definitions/ApplicationSecurityGroup"
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "The application security group specified as source."
         },
@@ -885,7 +885,7 @@
           "readOnly": true,
           "type": "array",
           "items": {
-            "$ref": "./networkInterface.json#/definitions/NetworkInterface"
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "A collection of references to network interfaces."
         },
@@ -893,7 +893,7 @@
           "readOnly": true,
           "type": "array",
           "items": {
-            "$ref": "./virtualNetwork.json#/definitions/Subnet"
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "A collection of references to subnets."
         },
