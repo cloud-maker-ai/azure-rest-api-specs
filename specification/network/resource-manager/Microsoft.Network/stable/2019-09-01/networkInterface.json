@@ -980,7 +980,7 @@
         "applicationSecurityGroups": {
           "type": "array",
           "items": {
-            "$ref": "./network.json#/definitions/SubResource",
+            "$ref": "./network.json#/definitions/SubResource"
           },
           "description": "Application security groups in which the IP configuration is included."
         },

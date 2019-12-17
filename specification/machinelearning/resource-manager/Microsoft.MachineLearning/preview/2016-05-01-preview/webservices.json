@@ -842,9 +842,7 @@
         "modeValuesInfo": {
           "type": "object",
           "description": "Definitions for nested interface parameters if this is a complex module parameter.",
-          "additionalProperties": {
-            "$ref": "#/definitions/ModeValueInfo"
-          }
+          "additionalProperties": true
         }
       }
     },
