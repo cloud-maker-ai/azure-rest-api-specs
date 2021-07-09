@@ -29,7 +29,7 @@ openapi-type: arm
 ```
 
 ``` yaml $(package-features)
-tag: package-features-2015-12
+tag: package-features-2021-07
 ```
 
 ``` yaml $(package-locks)
@@ -41,7 +41,7 @@ tag: package-policy-2020-09
 ```
 
 ``` yaml $(package-resources)
-tag: package-resources-2021-01
+tag: package-resources-2021-04
 ```
 
 ``` yaml $(package-subscriptions)
@@ -61,16 +61,16 @@ tag: package-deploymentscripts-2020-10
 ```
 
 ``` yaml $(package-templatespecs)
-tag: package-templatespecs-2019-06-preview
+tag: package-templatespecs-2021-03-preview
 ```
 
-### Tag: package-resources-2021-01
+### Tag: package-resources-2021-04
 
-These settings apply only when `--tag=package-resources-2021-01` is specified on the command line.
+These settings apply only when `--tag=package-resources-2021-04` is specified on the command line.
 
-``` yaml $(tag) == 'package-resources-2021-01'
+``` yaml $(tag) == 'package-resources-2021-04'
 input-file:
-- Microsoft.Resources/stable/2021-01-01/resources.json
+- Microsoft.Resources/stable/2021-04-01/resources.json
 ```
 
 ### Tag: package-policy-2020-09
@@ -100,7 +100,6 @@ input-file:
 ```
 
 
-
 ### Tag: package-subscriptions-2021-01
 
 These settings apply only when `--tag=package-subscriptions-2021-01` is specified on the command line.
@@ -109,6 +108,7 @@ These settings apply only when `--tag=package-subscriptions-2021-01` is specifie
 input-file:
 - Microsoft.Resources/stable/2021-01-01/subscriptions.json
 ```
+
 
 ### Tag: package-deploymentscripts-2020-10
 
@@ -126,6 +126,20 @@ These settings apply only when `--tag=package-deploymentscripts-2019-10-preview`
 ``` yaml $(tag) == 'package-deploymentscripts-2019-10-preview'
 input-file:
 - Microsoft.Resources/preview/2019-10-01-preview/deploymentScripts.json
+```
+
+### Tag: package-features-2021-07
+
+These settings apply only when `--tag=package-features-2021-07` is specified on the command line.
+
+``` yaml $(tag) == 'package-features-2021-07'
+input-file:
+- Microsoft.Features/stable/2021-07-01/features.json
+- Microsoft.Features/stable/2021-07-01/SubscriptionFeatureRegistration.json
+
+# Needed when there is more than one input file
+override-info:
+  title: FeatureClient
 ```
 
 ### Tag: package-features-2015-12
@@ -275,6 +289,24 @@ override-info:
   title: PolicyClient
 ```
 
+### Tag: package-templatespecs-2021-05
+
+These settings apply only when `--tag=package-templatespecs-2021-05` is specified on the command line.
+
+``` yaml $(tag) == 'package-templatespecs-2021-05'
+input-file:
+- Microsoft.Resources/stable/2021-05-01/templateSpecs.json
+```
+
+### Tag: package-templatespecs-2021-03-preview
+
+These settings apply only when `--tag=package-templatespecs-2021-03-preview` is specified on the command line.
+
+``` yaml $(tag) == 'package-templatespecs-2021-03-preview'
+input-file:
+- Microsoft.Resources/preview/2021-03-01-preview/templateSpecs.json
+```
+
 ### Tag: package-templatespecs-2019-06-preview
 
 These settings apply only when `--tag=package-templatespecs-2019-06-preview` is specified on the command line.
@@ -314,6 +346,15 @@ These settings apply only when `--tag=package-policy-2015-10` is specified on th
 ``` yaml $(tag) == 'package-policy-2015-10'
 input-file:
 - Microsoft.Authorization/preview/2015-10-01-preview/policy.json
+```
+
+### Tag: package-resources-2021-01
+
+These settings apply only when `--tag=package-resources-2021-01` is specified on the command line.
+
+``` yaml $(tag) == 'package-resources-2021-01'
+input-file:
+- Microsoft.Resources/stable/2021-01-01/resources.json
 ```
 
 ### Tag: package-resources-2020-10
@@ -728,6 +769,9 @@ directive:
   - suppress: TopLevelResourcesListByResourceGroup
     from: policySetDefinitions.json
     reason: Policy set definitions are a proxy resource that is only usable on subscriptions or management groups
+  - from: SubscriptionFeatureRegistration.json
+    suppress: R4009
+    reason: Currently systemData is not allowed
 ```
 
 ---
@@ -742,25 +786,16 @@ This is not used by Autorest itself.
 ``` yaml $(swagger-to-sdk)
 swagger-to-sdk:
   - repo: azure-sdk-for-net
-  - repo: azure-sdk-for-python
-    after_scripts:
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#features
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#locks
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#policy
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#resources
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#subscriptions
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#links
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#templatespecs
-      - python ./scripts/multiapi_init_gen.py azure-mgmt-resource#deploymentscripts
   - repo: azure-sdk-for-python-track2
   - repo: azure-sdk-for-java
   - repo: azure-sdk-for-go
   - repo: azure-sdk-for-node
   - repo: azure-sdk-for-js
   - repo: azure-resource-manager-schemas
-    after_scripts:
-      - node sdkauto_afterscript.js resources/resource-manager
 ```
+## Python
+
+See configuration in [readme.python.md](./readme.python.md)
 
 ## Go
 
@@ -804,6 +839,4 @@ override-info:
   title: PolicyClient
 ```
 
-## AzureResourceSchema
 
-See configuration in [readme.azureresourceschema.md](./readme.azureresourceschema.md)
